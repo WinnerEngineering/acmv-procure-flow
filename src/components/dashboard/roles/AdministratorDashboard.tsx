@@ -1,27 +1,12 @@
 
 import { StatCard } from "@/components/dashboard/StatCard";
 import { DashboardCard } from "@/components/dashboard/DashboardCard";
-import { FileText, Users, ClipboardCheck, FileOutput, Activity, Bell, Database } from "lucide-react";
+import { Users, Activity, Bell, Database, Settings as SettingsIcon, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { BudgetVsSpendChart } from "@/components/dashboard/BudgetVsSpendChart";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function AdministratorDashboard() {
-  const recentRequests = [
-    { id: "PR-2023-001", project: "Changi Airport T5", type: "PO", status: "Pending", date: "2023-04-15" },
-    { id: "PR-2023-002", project: "Marina Bay Sands", type: "WO", status: "Approved", date: "2023-04-12" },
-    { id: "PR-2023-003", project: "Jurong East Mall", type: "LOA", status: "Rejected", date: "2023-04-10" },
-    { id: "PR-2023-004", project: "Tampines Hub", type: "PO", status: "Draft", date: "2023-04-08" },
-  ];
-
-  const requestVersions: Record<string, string> = {
-    "PR-2023-001": "v1",
-    "PR-2023-002": "v2",
-    "PR-2023-003": "v1",
-    "PR-2023-004": "v1",
-  };
-  
   const systemHealth = [
     { title: "Total Users", value: "48", icon: <Users className="h-5 w-5 text-acmv-purple" />, trend: { value: 5, isPositive: true } },
     { title: "Active Sessions", value: "24", icon: <Activity className="h-5 w-5 text-green-500" />, trend: { value: 12, isPositive: true } },
@@ -50,7 +35,7 @@ export function AdministratorDashboard() {
         ))}
       </div>
       
-      {/* Quick Actions and Charts */}
+      {/* Quick Actions and NEW Admin Chart/Placeholder */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <DashboardCard
           title="Administrative Actions"
@@ -66,13 +51,13 @@ export function AdministratorDashboard() {
             </Button>
             <Button asChild variant="outline" className="w-full justify-start">
               <Link to="/settings">
-                <FileText className="mr-2 h-4 w-4" />
-                Templates & Thresholds
+                <SettingsIcon className="mr-2 h-4 w-4" />
+                System Settings & Templates
               </Link>
             </Button>
             <Button asChild variant="outline" className="w-full justify-start">
               <Link to="/audit-logs">
-                <ClipboardCheck className="mr-2 h-4 w-4" />
+                <LayoutDashboard className="mr-2 h-4 w-4" />
                 View Audit Logs
               </Link>
             </Button>
@@ -80,13 +65,29 @@ export function AdministratorDashboard() {
         </DashboardCard>
         
         <DashboardCard
-          title="Key Metrics: Requests by Type"
+          title="System Operations Snapshot"
           className="lg:col-span-2"
-          description="Distribution of purchase request types"
+          description="Realtime system performance and admin analytics"
           variant="gray"
-          icon={<span className="inline-block bg-green-100 rounded-full px-2 py-1 text-green-800 font-semibold text-xs">Analytics</span>}
+          icon={<span className="inline-block bg-blue-100 rounded-full px-2 py-1 text-blue-800 font-semibold text-xs">Admin Analytics</span>}
         >
-          <BudgetVsSpendChart />
+          <div className="flex flex-col items-center justify-center py-8">
+            <p className="text-muted-foreground mb-2">No major system issues. <br/> <span className="font-semibold text-green-600">System health is optimal.</span></p>
+            <div className="flex gap-8 mt-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-acmv-purple">99.9%</div>
+                <div className="text-xs text-muted-foreground">Uptime</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-700">0</div>
+                <div className="text-xs text-muted-foreground">Critical Errors</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-700">8</div>
+                <div className="text-xs text-muted-foreground">Scheduled Jobs</div>
+              </div>
+            </div>
+          </div>
         </DashboardCard>
       </div>
       

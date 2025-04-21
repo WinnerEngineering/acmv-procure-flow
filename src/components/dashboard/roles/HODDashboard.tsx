@@ -4,6 +4,7 @@ import { StatCard } from "@/components/dashboard/StatCard";
 import { FileText, TrendingDown, TrendingUp, BarChart4 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { BudgetVsSpendChart } from "@/components/dashboard/BudgetVsSpendChart";
 
 export function HODDashboard() {
   return (
@@ -13,7 +14,7 @@ export function HODDashboard() {
         <p className="text-muted-foreground">Monitor overall procurement and budgets. Executive overview access.</p>
       </div>
       
-      {/* Budget vs. Actual Cards */}
+      {/* Budget vs. Actual Cards + BudgetVsSpendChart */}
       <div className="grid gap-4 lg:grid-cols-2">
         <DashboardCard
           title="ACMV Department Budget"
@@ -68,6 +69,11 @@ export function HODDashboard() {
                   <TrendingUp className="mr-1 h-3 w-3" /> Attention needed
                 </span>
               </div>
+            </div>
+
+            <div className="mt-4">
+              {/* Moved Chart from Admin */}
+              <BudgetVsSpendChart />
             </div>
             
             <Button asChild className="w-full mt-2" variant="outline">

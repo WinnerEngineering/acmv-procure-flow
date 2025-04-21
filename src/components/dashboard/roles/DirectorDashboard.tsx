@@ -5,6 +5,7 @@ import { ClipboardCheck, FileText, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { BudgetVsSpendChart } from "@/components/dashboard/BudgetVsSpendChart";
 
 export function DirectorDashboard() {
   // Sample pending approvals data
@@ -116,54 +117,14 @@ export function DirectorDashboard() {
         </DashboardCard>
 
         <DashboardCard
-          title="Top 5 Projects by Spend"
-          description="Highest spending projects year-to-date"
+          title="Project Budget & Spend Overview"
+          description="Detailed view: Budget vs Spend by project"
           variant="gray"
         >
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Changi Airport T5</span>
-              <span className="text-sm">$458,250</span>
-            </div>
-            <div className="h-1.5 w-full rounded-full bg-gray-100">
-              <div className="h-1.5 w-[80%] rounded-full bg-acmv-purple"></div>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Marina Bay Sands</span>
-              <span className="text-sm">$312,400</span>
-            </div>
-            <div className="h-1.5 w-full rounded-full bg-gray-100">
-              <div className="h-1.5 w-[60%] rounded-full bg-acmv-purple-light"></div>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Jurong East Mall</span>
-              <span className="text-sm">$210,800</span>
-            </div>
-            <div className="h-1.5 w-full rounded-full bg-gray-100">
-              <div className="h-1.5 w-[40%] rounded-full bg-acmv-purple-light"></div>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Tampines Hub</span>
-              <span className="text-sm">$145,200</span>
-            </div>
-            <div className="h-1.5 w-full rounded-full bg-gray-100">
-              <div className="h-1.5 w-[25%] rounded-full bg-acmv-purple-light"></div>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Pasir Ris Mall</span>
-              <span className="text-sm">$119,150</span>
-            </div>
-            <div className="h-1.5 w-full rounded-full bg-gray-100">
-              <div className="h-1.5 w-[20%] rounded-full bg-acmv-purple-light"></div>
-            </div>
-          </div>
-          
-          <div className="mt-4 text-center">
-            <Button asChild variant="outline">
+          {/* Chart moved from Admin Dashboard */}
+          <BudgetVsSpendChart />
+          <div className="mt-2 text-center">
+            <Button asChild variant="link">
               <Link to="/spend-overview">View Full Spend Report</Link>
             </Button>
           </div>
