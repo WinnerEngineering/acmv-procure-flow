@@ -15,33 +15,36 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import VendorMasterList from "./pages/VendorMasterList";
 import ProjectMasterList from "./pages/ProjectMasterList";
+import { useState } from "react";
 
-const queryClient = new QueryClient();
+const App = () => {
+  // Initialize QueryClient inside the component
+  const [queryClient] = useState(() => new QueryClient());
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/vendors" element={<VendorManagement />} />
-          <Route path="/vendors/new" element={<NewVendor />} />
-          <Route path="/vendor-master" element={<VendorMasterList />} />
-          <Route path="/project-master" element={<ProjectMasterList />} />
-          <Route path="/requests/new" element={<PurchaseRequestWizard />} />
-          <Route path="/reviews" element={<ReviewRequests />} />
-          <Route path="/documents" element={<ApprovedDocuments />} />
-          <Route path="/settings" element={<Settings />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/vendors" element={<VendorManagement />} />
+            <Route path="/vendors/new" element={<NewVendor />} />
+            <Route path="/vendor-master" element={<VendorMasterList />} />
+            <Route path="/project-master" element={<ProjectMasterList />} />
+            <Route path="/requests/new" element={<PurchaseRequestWizard />} />
+            <Route path="/reviews" element={<ReviewRequests />} />
+            <Route path="/documents" element={<ApprovedDocuments />} />
+            <Route path="/settings" element={<Settings />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
-
