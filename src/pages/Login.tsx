@@ -14,7 +14,14 @@ const roles: UserRole[] = [
   "finance_officer",
 ];
 
-const dummyUsers = {
+// Explicitly type the dummyUsers object to match the User interface
+const dummyUsers: Record<UserRole, {
+  id: string;
+  name: string;
+  email: string;
+  role: UserRole;
+  avatar: string;
+}> = {
   administrator: {
     id: "1",
     name: "Alice Admin",
