@@ -1,3 +1,4 @@
+
 import { cn } from "@/lib/utils";
 import { 
   Home, 
@@ -6,51 +7,71 @@ import {
   ClipboardCheck, 
   FileOutput,
   Settings,
-  Database,
   Folder
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useUser } from "@/contexts/UserContext";
+import { UserRole } from "@/lib/roles";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function SidebarNav({ className, ...props }: SidebarNavProps) {
-  const navItems = [
-    {
-      title: "Dashboard",
-      href: "/dashboard",
-      icon: Home,
-    },
-    {
-      title: "Vendor Management",
-      href: "/vendors",
-      icon: Users,
-    },
-    {
-      title: "Project Master List",
-      href: "/project-master",
-      icon: Folder,
-    },
-    {
-      title: "New Request",
-      href: "/requests/new",
-      icon: FileText,
-    },
-    {
-      title: "Pending Reviews",
-      href: "/reviews",
-      icon: ClipboardCheck,
-    },
-    {
-      title: "Approved Documents",
-      href: "/documents",
-      icon: FileOutput,
-    },
-    {
-      title: "Settings",
-      href: "/settings",
-      icon: Settings,
-    },
-  ];
+  const { user, hasPermission } = useUser();
+
+  // Define navigation items with role-based visibility
+  const getNavItems = () => {
+    if (!user) return [];
+
+    const allNavItems = [
+      {
+        title: "Dashboard",
+        href: "/dashboard",
+        icon: Home,
+        visible: true, // Visible to all roles
+      },
+      {
+        title: "Vendor Management",
+        href: "/vendors",
+        icon: Users,
+        visible: hasPermission("view", "vendors"),
+      },
+      {
+        title: "Project Master List",
+        href: "/project-master",
+        icon: Folder,
+        visible: hasPermission("view", "projects"),
+      },
+      {
+        title: "New Request",
+        href: "/requests/new",
+        icon: FileText,
+        visible: hasPermission("create", "purchase_request"),
+      },
+      {
+        title: "Pending Reviews",
+        href: "/reviews",
+        icon: ClipboardCheck,
+        visible: hasPermission("view", "purchase_request") || 
+                hasPermission("approve", "purchase_request"),
+      },
+      {
+        title: "Approved Documents",
+        href: "/documents",
+        icon: FileOutput,
+        visible: hasPermission("view", "approved_documents"),
+      },
+      {
+        title: "Settings",
+        href: "/settings",
+        icon: Settings,
+        visible: user.role === "administrator",
+      },
+    ];
+
+    return allNavItems.filter(item => item.visible);
+  };
+
+  const navItems = getNavItems();
 
   return (
     <div className="hidden border-r bg-acmv-purple-light/30 lg:block lg:w-64">
@@ -80,12 +101,16 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
             ))}
           </nav>
         </div>
-        <div className="mt-auto p-4">
-          <div className="rounded-lg bg-acmv-purple-light p-4">
-            <p className="text-sm text-acmv-purple-dark font-medium">Need help?</p>
-            <p className="text-xs mt-1">Contact system administrator at support@acmvprocure.com</p>
+        {user && (
+          <div className="mt-auto p-4">
+            <div className="rounded-lg bg-acmv-purple-light p-4">
+              <p className="text-sm text-acmv-purple-dark font-medium">
+                Current role: {user.role.charAt(0).toUpperCase() + user.role.slice(1).replace("_", " ")}
+              </p>
+              <p className="text-xs mt-1">Need help? Contact system administrator at support@acmvprocure.com</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
