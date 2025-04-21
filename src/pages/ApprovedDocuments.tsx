@@ -3,7 +3,6 @@ import { MainLayout } from "@/components/layout/MainLayout";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { useUser } from "@/contexts/UserContext";
 import { RoleAuthorization } from "@/components/auth/RoleAuthorization";
-import { RoleSwitcher } from "@/components/auth/RoleSwitcher";
 import { FileOutput, Download, FileText, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,9 +30,7 @@ export default function ApprovedDocuments() {
               View and manage approved purchase orders, work orders, and letters of award
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <RoleSwitcher />
-          </div>
+          {/* Removed RoleSwitcher from here */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
