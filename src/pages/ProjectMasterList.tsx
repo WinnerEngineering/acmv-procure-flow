@@ -2,7 +2,7 @@
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Plus, Edit, Trash, Import, Export } from "lucide-react";
+import { Plus, Edit, Trash, Import, FileExport } from "lucide-react";
 
 export default function ProjectMasterList() {
   return (
@@ -25,7 +25,7 @@ export default function ProjectMasterList() {
             <Import className="w-4 h-4"/> Import CSV
           </Button>
           <Button disabled className="gap-2" variant="outline">
-            <Export className="w-4 h-4"/> Export CSV
+            <FileExport className="w-4 h-4"/> Export CSV
           </Button>
         </div>
         <div className="rounded-md border bg-white/90 p-2">
@@ -52,8 +52,8 @@ export default function ProjectMasterList() {
                 <TableCell>Changi, SG</TableCell>
                 <TableCell>Internal</TableCell>
                 <TableCell className="flex gap-1">
-                  <Button size="xs" disabled variant="ghost"><Edit className="w-3 h-3"/></Button>
-                  <Button size="xs" disabled variant="ghost"><Trash className="w-3 h-3"/></Button>
+                  <Button size="sm" disabled variant="ghost"><Edit className="w-3 h-3"/></Button>
+                  <Button size="sm" disabled variant="ghost"><Trash className="w-3 h-3"/></Button>
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -67,8 +67,8 @@ export default function ProjectMasterList() {
                 <TableCell>Marina Bay, SG</TableCell>
                 <TableCell>External</TableCell>
                 <TableCell className="flex gap-1">
-                  <Button size="xs" disabled variant="ghost"><Edit className="w-3 h-3"/></Button>
-                  <Button size="xs" disabled variant="ghost"><Trash className="w-3 h-3"/></Button>
+                  <Button size="sm" disabled variant="ghost"><Edit className="w-3 h-3"/></Button>
+                  <Button size="sm" disabled variant="ghost"><Trash className="w-3 h-3"/></Button>
                 </TableCell>
               </TableRow>
             </TableBody>
