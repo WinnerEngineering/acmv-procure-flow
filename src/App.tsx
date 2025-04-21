@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -16,6 +15,7 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import ProjectMasterList from "./pages/ProjectMasterList";
 import { UserProvider } from "./contexts/UserContext";
+import Login from "./pages/Login";
 
 const App = () => {
   const [queryClient] = React.useState(() => new QueryClient());
@@ -29,6 +29,7 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/vendors" element={<VendorManagement />} />
               <Route path="/vendors/new" element={<NewVendor />} />
