@@ -52,6 +52,20 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+                acmv: {
+                    purple: {
+                        DEFAULT: '#9b87f5',
+                        dark: '#6E59A5',
+                        light: '#E5DEFF',
+                    },
+                    gray: {
+                        DEFAULT: '#8E9196',
+                        light: '#F1F0FB',
+                    },
+                    green: '#F2FCE2',
+                    yellow: '#FEF7CD',
+                    orange: '#FEC6A1',
+                },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
