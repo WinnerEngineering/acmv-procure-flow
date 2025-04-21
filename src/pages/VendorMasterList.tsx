@@ -2,7 +2,7 @@
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Plus, Edit, Trash, Import, FileExport } from "lucide-react";
+import { Plus, Edit, Trash, Import, FileOutput } from "lucide-react";
 
 export default function VendorMasterList() {
   return (
@@ -25,7 +25,7 @@ export default function VendorMasterList() {
             <Import className="w-4 h-4"/> Import CSV
           </Button>
           <Button disabled className="gap-2" variant="outline">
-            <FileExport className="w-4 h-4"/> Export CSV
+            <FileOutput className="w-4 h-4"/> Export CSV
           </Button>
         </div>
         <div className="rounded-md border bg-white/90 p-2">
