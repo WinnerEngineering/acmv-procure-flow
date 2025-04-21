@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,11 +16,11 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import VendorMasterList from "./pages/VendorMasterList";
 import ProjectMasterList from "./pages/ProjectMasterList";
-import { useState } from "react";
 
+// Create QueryClient outside of component but only initialize it inside component
 const App = () => {
-  // Initialize QueryClient inside the component
-  const [queryClient] = useState(() => new QueryClient());
+  // Initialize QueryClient inside the component with React.useState
+  const [queryClient] = React.useState(() => new QueryClient());
 
   return (
     <QueryClientProvider client={queryClient}>
