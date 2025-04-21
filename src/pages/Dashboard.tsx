@@ -1,4 +1,3 @@
-
 import { MainLayout } from "@/components/layout/MainLayout";
 import { DashboardCard } from "@/components/dashboard/DashboardCard";
 import { StatCard } from "@/components/dashboard/StatCard";
@@ -6,15 +5,22 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FileText, Users, ClipboardCheck, FileOutput } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BudgetVsSpendChart } from "@/components/dashboard/BudgetVsSpendChart";
 
 export default function Dashboard() {
-  // This would be fetched from an API in a real application
   const recentRequests = [
     { id: "PR-2023-001", project: "Changi Airport T5", type: "PO", status: "Pending", date: "2023-04-15" },
     { id: "PR-2023-002", project: "Marina Bay Sands", type: "WO", status: "Approved", date: "2023-04-12" },
     { id: "PR-2023-003", project: "Jurong East Mall", type: "LOA", status: "Rejected", date: "2023-04-10" },
     { id: "PR-2023-004", project: "Tampines Hub", type: "PO", status: "Draft", date: "2023-04-08" },
   ];
+
+  const requestVersions: Record<string, string> = {
+    "PR-2023-001": "v1",
+    "PR-2023-002": "v2",
+    "PR-2023-003": "v1",
+    "PR-2023-004": "v1",
+  };
 
   return (
     <MainLayout>
@@ -81,8 +87,20 @@ export default function Dashboard() {
           </DashboardCard>
 
           <DashboardCard
-            title="Recent Activity"
+            title="Reporting: Budget vs. Spend"
             className="lg:col-span-2"
+            description="Visual comparison of planned budget vs. issued spend by project"
+            variant="gray"
+            icon={<span className="inline-block bg-green-100 rounded-full px-2 py-1 text-green-800 font-semibold text-xs">Analytics</span>}
+          >
+            <BudgetVsSpendChart />
+          </DashboardCard>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <DashboardCard
+            title="Recent Activity"
+            className="lg:col-span-3"
             variant="gray"
           >
             <Tabs defaultValue="all">
@@ -103,6 +121,7 @@ export default function Dashboard() {
                             <th className="h-10 px-2 text-left font-medium">Project</th>
                             <th className="h-10 px-2 text-left font-medium">Type</th>
                             <th className="h-10 px-2 text-left font-medium">Status</th>
+                            <th className="h-10 px-2 text-left font-medium">Version</th>
                             <th className="h-10 px-2 text-left font-medium">Date</th>
                           </tr>
                         </thead>
@@ -128,6 +147,11 @@ export default function Dashboard() {
                                   }`}
                                 >
                                   {request.status}
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-800 font-semibold">
+                                  {requestVersions[request.id] || "v1"}
                                 </span>
                               </td>
                               <td className="p-2">{request.date}</td>

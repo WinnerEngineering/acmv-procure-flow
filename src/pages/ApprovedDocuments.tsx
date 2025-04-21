@@ -1,4 +1,3 @@
-
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +5,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Search, Filter, FileText, Download, Eye } from "lucide-react";
 
 export default function ApprovedDocuments() {
-  // This would be fetched from an API in a real application
   const approvedDocuments = [
     { 
       id: "PR-2023-002", 
@@ -53,6 +51,14 @@ export default function ApprovedDocuments() {
       documentNumber: "PO-2023-075"
     },
   ];
+
+  const documentVersioningEnabled = true;
+  const documentVersions: Record<string, string> = {
+    "PR-2023-002": "v2",
+    "PR-2023-009": "v3",
+    "PR-2022-156": "v1",
+    "PR-2022-149": "v1",
+  };
 
   return (
     <MainLayout>
@@ -101,6 +107,9 @@ export default function ApprovedDocuments() {
                       <th className="h-10 px-2 text-left font-medium">Vendor</th>
                       <th className="h-10 px-2 text-left font-medium">Amount (SGD)</th>
                       <th className="h-10 px-2 text-left font-medium">Approved On</th>
+                      {documentVersioningEnabled && (
+                        <th className="h-10 px-2 text-left font-medium">Version</th>
+                      )}
                       <th className="h-10 px-2 text-left font-medium">Actions</th>
                     </tr>
                   </thead>
@@ -130,6 +139,13 @@ export default function ApprovedDocuments() {
                         <td className="p-2">{doc.vendor}</td>
                         <td className="p-2">{doc.amount}</td>
                         <td className="p-2">{doc.approvedOn}</td>
+                        {documentVersioningEnabled && (
+                          <td className="p-2">
+                            <span className="inline-block px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-800 font-semibold">
+                              {documentVersions[doc.id] || "v1"}
+                            </span>
+                          </td>
+                        )}
                         <td className="p-2">
                           <div className="flex items-center gap-2">
                             <Button variant="ghost" size="icon">
