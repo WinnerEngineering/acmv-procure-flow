@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -14,12 +13,9 @@ import ReviewRequests from "./pages/ReviewRequests";
 import ApprovedDocuments from "./pages/ApprovedDocuments";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
-import VendorMasterList from "./pages/VendorMasterList";
 import ProjectMasterList from "./pages/ProjectMasterList";
 
-// Create QueryClient outside of component but only initialize it inside component
 const App = () => {
-  // Initialize QueryClient inside the component with React.useState
   const [queryClient] = React.useState(() => new QueryClient());
 
   return (
@@ -33,13 +29,11 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/vendors" element={<VendorManagement />} />
             <Route path="/vendors/new" element={<NewVendor />} />
-            <Route path="/vendor-master" element={<VendorMasterList />} />
             <Route path="/project-master" element={<ProjectMasterList />} />
             <Route path="/requests/new" element={<PurchaseRequestWizard />} />
             <Route path="/reviews" element={<ReviewRequests />} />
             <Route path="/documents" element={<ApprovedDocuments />} />
             <Route path="/settings" element={<Settings />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

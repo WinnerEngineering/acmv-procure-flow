@@ -1,4 +1,3 @@
-
 import { cn } from "@/lib/utils";
 import { 
   Home, 
@@ -25,11 +24,6 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
       title: "Vendor Management",
       href: "/vendors",
       icon: Users,
-    },
-    {
-      title: "Vendor Master List",
-      href: "/vendor-master",
-      icon: Database,
     },
     {
       title: "Project Master List",
