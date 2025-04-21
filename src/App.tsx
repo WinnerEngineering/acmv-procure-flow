@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +13,8 @@ import ReviewRequests from "./pages/ReviewRequests";
 import ApprovedDocuments from "./pages/ApprovedDocuments";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import VendorMasterList from "./pages/VendorMasterList";
+import ProjectMasterList from "./pages/ProjectMasterList";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +29,8 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/vendors" element={<VendorManagement />} />
           <Route path="/vendors/new" element={<NewVendor />} />
+          <Route path="/vendor-master" element={<VendorMasterList />} />
+          <Route path="/project-master" element={<ProjectMasterList />} />
           <Route path="/requests/new" element={<PurchaseRequestWizard />} />
           <Route path="/reviews" element={<ReviewRequests />} />
           <Route path="/documents" element={<ApprovedDocuments />} />
@@ -39,3 +44,4 @@ const App = () => (
 );
 
 export default App;
+

@@ -6,7 +6,9 @@ import {
   FileText, 
   ClipboardCheck, 
   FileOutput,
-  Settings
+  Settings,
+  Database,
+  Folder
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -23,6 +25,16 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
       title: "Vendor Management",
       href: "/vendors",
       icon: Users,
+    },
+    {
+      title: "Vendor Master List",
+      href: "/vendor-master",
+      icon: Database,
+    },
+    {
+      title: "Project Master List",
+      href: "/project-master",
+      icon: Folder,
     },
     {
       title: "New Request",
